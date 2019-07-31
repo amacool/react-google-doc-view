@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d18b926f-6fd6-4eaa-9273-f3bc6c3449f6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/react-using-google-doc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/react-google-doc-view/DocViewFrame.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/react-google-doc-view/GetStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/react-google-doc-view/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/react-google-doc-view/view.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/serviceWorker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1590424443">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.33" value="1" />
+          <entry key="project.opened" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="LICENSE" value="1" />
+          <entry key="css" value="5" />
+          <entry key="gitignore" value="1" />
+          <entry key="html" value="1" />
+          <entry key="js" value="45" />
+          <entry key="json" value="6" />
+          <entry key="svg" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="5" />
+          <entry key="HTML" value="1" />
+          <entry key="JSON" value="6" />
+          <entry key="JavaScript" value="45" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="SVG" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts">
+        <counts>
+          <entry key="ESLintLanguageService" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="css" value="155" />
+          <entry key="html" value="11" />
+          <entry key="js" value="14781" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="155" />
+          <entry key="HTML" value="11" />
+          <entry key="JavaScript" value="14781" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/react-google-doc-view/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="38" column="19" lean-forward="true" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/react-google-doc-view/DocViewFrame.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="982">
+              <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#1051#1434#0" />
+                <element signature="e#1484#3077#0" />
+                <element signature="e#3121#3336#0" />
+                <element signature="e#3394#6351#0" />
+                <element signature="e#6408#6808#0" />
+                <element signature="e#6859#7550#0" />
+                <element signature="e#7593#11451#0" />
+                <element signature="e#11502#11759#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/react-google-doc-view/GetStyle.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1620">
+              <caret line="60" column="20" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/react-google-doc-view/view.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="89">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>italic</find>
+      <find>indentfirstline</find>
+      <find>marginleft</find>
+      <find>indent</find>
+      <find>list</find>
+      <find>lists</find>
+      <find>let</find>
+      <find>this.namedStyles[paragraphStyle.namedStyleT</find>
+      <find>keepLinesTogether</find>
+      <find>cropProperties</find>
+      <find>propertyState</find>
+      <find>columns</find>
+      <find>textStyle</find>
+      <find>namedStyles</find>
+      <find>inden</find>
+      <find>bullet</find>
+      <find>direc</find>
+      <find>direction</find>
+      <find>h.drznkt3qm39b</find>
+      <find>textrun</find>
+      <find>&quot;</find>
+      <find>[QUESTIONBOTTOM]</find>
+      <find>table</find>
+      <find>[VIDEOHEADER]</find>
+      <find>[SLIDECUT]</find>
+      <find>console</find>
+      <find>getSectionBlocks</find>
+      <find>doc-view-container</find>
+      <find>Chapter Two – Wiring and Protecti</find>
+      <find>console.log</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>'</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>E:\web\React\react-using-google-doc\node_modules</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/node_modules/react-google-doc-view/index.js" />
+        <option value="$PROJECT_DIR$/src/xyz.js" />
+        <option value="$PROJECT_DIR$/node_modules/react-google-doc-view/ReactGoogleDocView.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/src/react-google-doc-view/ReactGoogleDocView.js" />
+        <option value="$PROJECT_DIR$/src/react-google-doc-view/sample.js" />
+        <option value="$PROJECT_DIR$/src/react-google-doc-view/GetStyle.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/App.css" />
+        <option value="$PROJECT_DIR$/src/react-google-doc-view/view.css" />
+        <option value="$PROJECT_DIR$/src/react-google-doc-view/DocViewFrame.js" />
+        <option value="$PROJECT_DIR$/src/react-google-doc-view/index.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="react-using-google-doc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-using-google-doc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-using-google-doc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-using-google-doc" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-using-google-doc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-using-google-doc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="react-using-google-doc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-using-google-doc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="react-google-doc-view" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="E:\web\React\react-using-google-doc\node_modules\eslint" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d18b926f-6fd6-4eaa-9273-f3bc6c3449f6" name="Default Changelist" comment="" />
+      <created>1564159782686</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564159782686</updated>
+      <workItem from="1564159784160" duration="8761000" />
+      <workItem from="1564179462511" duration="2852000" />
+      <workItem from="1564209797763" duration="34644000" />
+      <workItem from="1564295002996" duration="38609000" />
+      <workItem from="1564380425874" duration="591000" />
+      <workItem from="1564416089327" duration="42000" />
+      <workItem from="1564584192528" duration="12433000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="97932000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24960339" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.21899441" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/node_modules/slash/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/slash/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-536" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xyz.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-sheets/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-is/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-autosuggest/dist/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-sheets/ReactGoogleSheets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="55" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-autosuggest/dist/theme.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-autosuggest/dist/standalone/autosuggest.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-autosuggest/dist/Autosuggest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="47" column="18" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-autosuggest/LICENSE">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-autosuggest/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="39" column="29" lean-forward="true" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-doc-view/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-doc-view/ReactGoogleDocView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="12" lean-forward="true" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../react-google-doc-view/src/ReactGoogleDocView.js" />
+    <entry file="file://$PROJECT_DIR$/../react-google-doc-view/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1296" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../react-google-doc-view/src/view.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../react-google-doc-view/package.json" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-sheets/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-sheets/google-sheet-connector/gapi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-sheets/google-sheet-connector/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="265" column="36" lean-forward="true" selection-start-line="265" selection-start-column="36" selection-end-line="265" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-sheets/src/ReactGoogleSheets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-sheets/src/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-sheets/src/google-sheet-connector/gapi.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-google-sheets/src/google-sheet-connector/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/logo.svg" />
+    <entry file="file://$PROJECT_DIR$/src/react-google-doc-view/GetStyle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="60" column="20" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react-google-doc-view/view.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react-google-doc-view/sample.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="18" column="19" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="19" />
+          <folding>
+            <element signature="e#4281#4840#0" />
+            <element signature="e#4848#15799#0" />
+            <element signature="e#5115#7239#0" />
+            <element signature="e#5218#6620#0" />
+            <element signature="e#5357#6578#0" />
+            <element signature="e#5423#5760#0" />
+            <element signature="e#5788#6073#0" />
+            <element signature="e#6658#7221#0" />
+            <element signature="e#7257#9097#0" />
+            <element signature="e#9115#10901#0" />
+            <element signature="e#10919#12720#0" />
+            <element signature="e#12738#14530#0" />
+            <element signature="e#17894#18941#0" />
+            <element signature="e#18949#20212#0" />
+            <element signature="e#20220#20986#0" />
+            <element signature="e#20994#21874#0" />
+            <element signature="e#21882#26547#0" />
+            <element signature="e#22023#26249#0" />
+            <element signature="e#22037#26237#0" />
+            <element signature="e#22274#23741#0" />
+            <element signature="e#22457#23159#0" />
+            <element signature="e#23229#23695#0" />
+            <element signature="e#23763#25283#0" />
+            <element signature="e#23918#24727#0" />
+            <element signature="e#23946#24701#0" />
+            <element signature="e#24771#25237#0" />
+            <element signature="e#25341#26056#0" />
+            <element signature="e#26555#27490#0" />
+            <element signature="e#27498#28463#0" />
+            <element signature="e#28471#29530#0" />
+            <element signature="e#29538#48747#0" />
+            <element signature="e#30093#33580#0" />
+            <element signature="e#206288#207415#0" />
+            <element signature="e#207423#208424#0" />
+            <element signature="e#208432#209289#0" />
+            <element signature="e#209297#210358#0" />
+            <element signature="e#914484#947427#0" />
+            <element signature="e#920367#922860#0" />
+            <element signature="e#922882#925258#0" />
+            <element signature="e#925280#927664#0" />
+            <element signature="e#927686#929375#0" />
+            <element signature="e#929397#931130#0" />
+            <element signature="e#931152#932870#0" />
+            <element signature="e#932892#934588#0" />
+            <element signature="e#934610#938891#0" />
+            <element signature="e#934731#938869#0" />
+            <element signature="e#938913#943195#0" />
+            <element signature="e#943217#947407#0" />
+            <element signature="e#947465#950040#0" />
+            <element signature="e#1524545#1525069#0" />
+            <element signature="e#1525088#1532380#0" />
+            <element signature="e#1536513#1540581#0" />
+            <element signature="e#1540607#1544549#0" />
+            <element signature="e#1544575#1548673#0" />
+            <element signature="e#1548699#1552794#0" />
+            <element signature="e#1552972#1609013#0" />
+            <element signature="e#1552998#1554289#0" />
+            <element signature="e#1554315#1555667#0" />
+            <element signature="e#1555693#1556984#0" />
+            <element signature="e#1557010#1558362#0" />
+            <element signature="e#1558388#1559677#0" />
+            <element signature="e#1559703#1561056#0" />
+            <element signature="e#1561082#1562360#0" />
+            <element signature="e#1562386#1563738#0" />
+            <element signature="e#1563764#1565055#0" />
+            <element signature="e#1565081#1566372#0" />
+            <element signature="e#1566398#1567689#0" />
+            <element signature="e#1567715#1569006#0" />
+            <element signature="e#1569032#1570323#0" />
+            <element signature="e#1570383#1571625#0" />
+            <element signature="e#1571657#1572947#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react-google-doc-view/DocViewFrame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="982">
+          <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#1051#1434#0" />
+            <element signature="e#1484#3077#0" />
+            <element signature="e#3121#3336#0" />
+            <element signature="e#3394#6351#0" />
+            <element signature="e#6408#6808#0" />
+            <element signature="e#6859#7550#0" />
+            <element signature="e#7593#11451#0" />
+            <element signature="e#11502#11759#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/react-google-doc-view/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="38" column="19" lean-forward="true" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="15" column="2" lean-forward="true" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
