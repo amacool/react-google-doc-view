@@ -1,45 +1,36 @@
-import React, {Component} from 'react';
-import ReactGoogleDocView from './react-google-doc-view';
+import React, { Component } from 'react';
+import ReactGoogleDocView, { getSectionBlocks } from './react-google-doc-view';
+import { dummyData } from './react-google-doc-view/dummyData';
+// import { googleDocConnect } from './react-google-doc-view/GoogleDocConnect';
 import './App.css';
 
-// credentials
-let clientId = '443792400890-10euqlru0cmiat2f3vblrei3olp32g4j.apps.googleusercontent.com';
-let apiKey = 'AIzaSyC01VeeK9JfUExHR1bPi37RdpoSptDg-3U';
-let documentId = '1OqkILmweYQR2AYd2D0_BVcFOz-Y7gpiNJeaovTcbZR0';
+// let docContent = {
+//   docSections: [],
+//   docFrameStyle: {}
+// };
 
 class App extends Component {
-  state = {
-    isDocLoaded: false,
-    sectionBlocks: [],
-    docFrameStyle: {}
-  };
-  
-  getSectionBlock = ({sectionBlocks, docFrameStyle}) => {
-    this.setState({sectionBlocks, docFrameStyle, isDocLoaded: true});
-  };
+  componentDidMount() {
+    // googleDocConnect({
+    //   clientId: '443792400890-10euqlru0cmiat2f3vblrei3olp32g4j.apps.googleusercontent.com',
+    //   apiKey: 'AIzaSyC01VeeK9JfUExHR1bPi37RdpoSptDg-3U',
+    //   documentId: '1OqkILmweYQR2AYd2D0_BVcFOz-Y7gpiNJeaovTcbZR0'
+    // }).then(res => {
+    //    getSectionBlocks(res);
+    // });
+    // console.log(getSectionBlocks(dummyData));
+    
+  }
   
   render() {
-    const {isDocLoaded, sectionBlocks, docFrameStyle} = this.state;
     return (
       <div className="App">
         <header className="App-header">
           <h1>Using React Google Doc</h1>
         </header>
         <ReactGoogleDocView
-          clientId={clientId}
-          apiKey={apiKey}
-          documentId={documentId}
-          getSections={this.getSectionBlock}
-          afterLoading={() => this.setState({isDocLoaded: true})}
+          docContent={getSectionBlocks(dummyData)}
         />
-        {isDocLoaded ?
-        <div className='doc-view-container'>
-          <div className='page-container'>
-            <div className='doc-view-frame' style={docFrameStyle}>
-              {sectionBlocks.map(block => block.content)}
-            </div>
-          </div>
-        </div>: null}
       </div>
     );
   }
