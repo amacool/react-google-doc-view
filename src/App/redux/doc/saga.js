@@ -1,8 +1,9 @@
 import actions from './actions';
 import axios from 'axios';
 import { all, takeEvery, put, call } from 'redux-saga/effects';
+import { apiKey } from "../constants";
 
-const loadDocument = ({ documentId, apiKey, accessToken }) => {
+const loadDocument = ({ documentId, accessToken }) => {
   return axios.get(`https://cors-anywhere.herokuapp.com/https://docs.googleapis.com/v1/documents/${documentId}?key=${apiKey}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
