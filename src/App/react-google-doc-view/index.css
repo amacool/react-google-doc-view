@@ -1,15 +1,134 @@
 .page-container {
-  overflow-y: auto;
   background-color: white;
-  box-shadow: 0 2px 5px 1px rgba(0,0,0,0.2);
+  border: solid 2px black;
   text-align: left;
+  padding: 20px;
+  width: 1200px;
 }
+
+.doc-view-frame-container {
+  box-shadow: 0 2px 5px 1px rgba(0,0,0,0.2);
+}
+
 .doc-view-container {
   display: flex;
   justify-content: center;
   background-color: white;
   margin-top: 3rem;
 }
+
+.doc-view-frame {
+  padding: 20px;
+}
+
+.doc-view-frame-header {
+  width: 100%;
+  height: 50px;
+  background: #F7F7F7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doc-view-progress {
+  width: 50%;
+  display: flex;
+  align-self: center;
+}
+
+.doc-view-frame-controller {
+  width: 100%;
+  height: 50px;
+  background: #F7F7F7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doc-view-frame-controller > div {
+  background: #0054A9;
+  color: white;
+  font-weight: 600;
+  padding: 5px 20px;
+  box-shadow: 0 2px 5px 1px rgba(0,0,0,0.4);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.doc-view-frame-controller > div:first-child {
+  margin-left: 20px;
+}
+.doc-view-frame-controller > div:last-child {
+  margin-right: 20px;
+}
+
+.btn-show-list {
+  background: white;
+  color: white;
+  font-weight: 600;
+  padding: 5px 10px;
+  box-shadow: 0 2px 5px 1px rgba(0,0,0,0.4);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20px;
+  float: right;
+  height: 20px;
+  margin-right: 20px;
+  align-items: center;
+  display: flex;
+}
+
+.navigation-container {
+  width: 300px;
+  background: white;
+  border: solid 2px;
+}
+
+.navigation-container ul {
+  padding-left: 15px;
+}
+.navigation-container > ul {
+  padding: 0;
+  margin: 20px 10px;
+  border: solid 2px;
+  background-color: #C1C1C1;
+}
+.navigation-container > ul > li {
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+}
+.navigation-container > ul > li:first-child {
+  border-top: none;
+}
+.navigation-container > ul > li:last-child {
+  border-bottom: none;
+}
+.navigation-container ul li {
+  list-style: none;
+  text-align: left;
+  cursor: pointer;
+}
+.navigation-container .nav-item {
+  padding: 5px;
+}
+.navigation-container .nav-item.active {
+  background-color: white;
+}
+.navigation-container .nav-item.active + div {
+  background-color: white;
+}
+
+.react-sweet-progress {
+  margin-left: 20px;
+  width: 90%;
+}
+.react-sweet-progress-line-inner {
+  background-color: #0054A9;
+}
+
 .error-type {
   background-color: #ffcd85;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 1em;
 }
