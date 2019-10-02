@@ -5,11 +5,11 @@ import { store } from './redux/store';
 import './App.css';
 
 const App = () => (
-  <Provider store={store}>
-    <div className="App">
-      <DocViewContainer />
-    </div>
-  </Provider>
+    <Provider store={store}>
+        <div className="App">
+            <DocViewContainer />
+        </div>
+    </Provider>
 );
 
 export default App;

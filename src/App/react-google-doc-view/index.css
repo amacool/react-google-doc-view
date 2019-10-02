@@ -113,6 +113,9 @@
 .navigation-container .nav-item.active {
   background-color: white;
 }
+.navigation-container .nav-item.active.focus {
+  background-color: #e2e2e2;
+}
 .navigation-container .nav-item.active + div {
   background-color: white;
 }

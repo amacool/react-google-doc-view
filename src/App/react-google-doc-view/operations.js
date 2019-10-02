@@ -107,18 +107,18 @@ const getTextStyle = textStyle => {
     return style;
 };
 
-const getHeadingNum = (element) => {
-  if (!element) return -1;
-  const elementStyle =
-    element.paragraph && element.paragraph.paragraphStyle.namedStyleType
-      ? element.paragraph.paragraphStyle.namedStyleType
-      : '';
-  for (let k = 1; k < 7; k++) {
-    if (elementStyle.indexOf(`HEADING_${k}`) >= 0) {
-      return k;
+const getHeadingNum = element => {
+    if (!element) return -1;
+    const elementStyle =
+        element.paragraph && element.paragraph.paragraphStyle.namedStyleType
+            ? element.paragraph.paragraphStyle.namedStyleType
+            : '';
+    for (let k = 1; k < 7; k += 1) {
+        if (elementStyle.indexOf(`HEADING_${k}`) !== -1) {
+            return k;
+        }
     }
-  }
-  return -1;
+    return -1;
 };
 
 export { getNamedStyle, getFrameStyle, getBorderStyle, getTextStyle, getHeadingNum };
