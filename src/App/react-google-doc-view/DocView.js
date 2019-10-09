@@ -85,8 +85,8 @@ const DocView = ({ docContent }) => {
                                 break;
                             }
                         }
-                        let targetItem = docSlideList[targetNodeId];
-                        let parents = getParents(docSlideList, targetItem);
+                        const targetItem = docSlideList[targetNodeId];
+                        const parents = getParents(docSlideList, targetItem);
                         item.isOpen = !item.isOpen;
                         if (item.isOpen) {
                             closeNodes(getParents(docSlideList, curNode));
@@ -160,7 +160,7 @@ const DocView = ({ docContent }) => {
                         </div>
                     </div>
                     <div className="doc-view-frame">
-                        {docSlideList.length && renderNode(docSlideList, docSlideList[curNodeId])}
+                        {docSlideList.length && renderNode(docSlideList, docSlideList[curNodeId], curNodeId)}
                     </div>
                     <div className="doc-view-frame-controller">
                         <div onClick={() => navigateToPrev()}>Previous</div>

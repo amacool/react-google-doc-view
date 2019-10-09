@@ -156,7 +156,7 @@ const ViewerContainer = props => {
             renderTOC={renderNavigationList}
             menuList={menuList}
         >
-            {docSlideList.length > 0 && renderNode(docSlideList, docSlideList[curNodeId])}
+            {docSlideList.length > 0 && renderNode(docSlideList, docSlideList[curNodeId], curNodeId)}
         </DocViewer>
     );
 };
