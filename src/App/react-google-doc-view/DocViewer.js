@@ -33,22 +33,34 @@ const ViewerContainer = props => {
     const [progress, setProgress] = useState(0);
     const [docSlideList, setDocSlideList] = useState([]);
     const [menuList, setMenuList] = useState([]);
-
+    
     const navigateToPrev = () => {
-        let nodeId = curNodeId - 1;
-        if (nodeId < 0) {
-            nodeId = docSlideList.length - 1;
+        let nodeId = 0;
+        for (let i = curNodeId - 1;; i -= 1) {
+            if (i < 0) {
+                i = docSlideList.length - 1;
+            }
+            if (docSlideList[i].content) {
+                nodeId = i;
+                break;
+            }
         }
         closeNodes(getParents(docSlideList, curNode));
         getParents(docSlideList, docSlideList[nodeId]).forEach(item => (item.isOpen = true));
         setCurNodeId(nodeId);
         setCurNode(docSlideList[nodeId]);
     };
-
+    
     const navigateToNext = () => {
-        let nodeId = curNodeId + 1;
-        if (nodeId >= docSlideList.length) {
-            nodeId = 0;
+        let nodeId = 0;
+        for (let i = curNodeId + 1;; i += 1) {
+            if (i >= docSlideList.length) {
+                i = 0;
+            }
+            if (docSlideList[i].content) {
+                nodeId = i;
+                break;
+            }
         }
         closeNodes(getParents(docSlideList, curNode));
         getParents(docSlideList, docSlideList[nodeId]).forEach(item => (item.isOpen = true));
@@ -57,7 +69,6 @@ const ViewerContainer = props => {
     };
 
     const renderNavigationList = (item, key) => {
-        const parents = getParents(docSlideList, item);
         return (
             <React.Fragment key={key}>
                 <li
@@ -75,13 +86,27 @@ const ViewerContainer = props => {
                         if (item.nodeId !== prevNode.nodeId) {
                             prevNode.isOpen = false;
                         }
+                        // find non-empty slide
+                        let targetNodeId = getNodeId(docSlideList, item);
+                        for (let i = targetNodeId;; i += 1) {
+                            if (i >= docSlideList.length) {
+                                break;
+                            }
+                            if (docSlideList[i].content) {
+                                targetNodeId = i;
+                                break;
+                            }
+                        }
+                        let targetItem = docSlideList[targetNodeId];
+                        let parents = getParents(docSlideList, targetItem);
                         item.isOpen = !item.isOpen;
                         if (item.isOpen) {
                             closeNodes(getParents(docSlideList, curNode));
                             parents.forEach(parent => (parent.isOpen = true));
                         }
-                        setCurNodeId(getNodeId(docSlideList, item));
-                        setCurNode({ ...item, isOpen: item.isOpen });
+    
+                        setCurNodeId(targetNodeId);
+                        setCurNode({ ...targetItem, isOpen: item.isOpen });
                         e.stopPropagation();
                     }}
                     style={{ paddingLeft: `${10 * (item.level - 1)}px` }}

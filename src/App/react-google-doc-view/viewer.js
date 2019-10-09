@@ -59,7 +59,7 @@ const getDocSlideList = sections => {
             }
         }
     });
-    return { slideList, menuList: sectionMenuList };
+    return { slideList, updatedMenuList: sectionMenuList };
 };
 
 const closeNodes = nodes => {
