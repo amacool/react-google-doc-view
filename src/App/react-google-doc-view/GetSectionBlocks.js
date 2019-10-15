@@ -491,236 +491,256 @@ export const getSectionBlocks = data => {
     };
 
     const getSections = () => {
-        let curBlock = '';
-        let curType = 2;
-        let curTitle = '';
-        let curBlockStrLength = 0;
-        let curSlideStrLength = 0;
-        let curQuestionCount = 0;
-        sectionBlocks = [];
-        let isFirstVideoHeader = 0;
-        let isBlockFinished = false;
-
-        for (let i = 0; i < elementArr.length; i += 1) {
-            const element = elementArr[i];
-            const tempBlock = renderElements(element, i);
-            const elementStr = element.paragraph ? JSON.stringify(element.paragraph.elements) : '';
-            const elementStyle =
-                element.paragraph && element.paragraph.paragraphStyle.namedStyleType
-                    ? element.paragraph.paragraphStyle.namedStyleType
-                    : '';
-            const nextElementStr =
-                elementArr[i + 1] && elementArr[i + 1].paragraph
-                    ? JSON.stringify(elementArr[i + 1].paragraph.elements)
-                    : '';
-            const nextElementStyle =
-                elementArr[i + 1] &&
-                elementArr[i + 1].paragraph &&
-                elementArr[i + 1].paragraph.paragraphStyle.namedStyleType
-                    ? elementArr[i + 1].paragraph.paragraphStyle.namedStyleType
-                    : '';
-
-            if (tempBlock) {
-                const videoStarted = elementStr.indexOf('[VIDEOHEADER]') !== -1;
-                const videoEnded = elementStr.indexOf('[VIDEOBOTTOM]') !== -1;
-                const questionStarted = elementStr.indexOf('[QUESTIONHEADER]') !== -1;
-                const questionEnded = elementStr.indexOf('[QUESTIONBOTTOM]') !== -1;
-                const isSlideCut = elementStr.indexOf('[SLIDECUT]') !== -1;
-                const curText = getTextFromElement(element);
-
-                if (videoStarted) {
-                    /**
-                     * H1 followed by VIDEOHEADER inspection
-                     */
-                    if (nextElementStyle.indexOf('HEADING_1') === -1) {
-                        addError('Heading', 'H1 required after VIDEOHEADER', 'hard', curTitle);
-                        break;
-                    }
-
-                    // video section start
-                    curType = 0;
-                    isFirstVideoHeader += 1;
-                    isBlockFinished = false;
-                    curSlideStrLength = 0;
-                    curTitle = '';
-                } else if (videoEnded) {
-                    /**
-                     * SLIDECUT after VIDEOBOTTOM inspection
-                     */
-                    if (nextElementStr.indexOf('[SLIDECUT]') === -1 && isFirstVideoHeader > 1) {
-                        addError(
-                            'Tag',
-                            '[SLIDECUT] must exist after [VIDEOBOTTOM].',
-                            'hard',
-                            curTitle,
-                        );
-                        break;
-                    }
-
-                    // video section end
-                    sectionBlocks = [
-                        ...sectionBlocks,
-                        { title: curTitle, content: curBlock, type: 'video' },
-                    ];
-                    curBlock = [];
-                    curBlockStrLength = 0;
-                    isBlockFinished = true;
-                } else if (questionStarted) {
-                    // question section start
-                    curType = 1;
-                    curTitle = '';
-                    curSlideStrLength = 0;
-                    curQuestionCount = 0;
-                    isBlockFinished = false;
-                } else if (questionEnded) {
-                    /**
-                     * question title validation
-                     */
-                    if (!curTitle) {
-                        addError(
-                            'Tag',
-                            'Question name is empty',
-                            'hard',
-                            curTitle
-                        );
-                        break;
-                    }
-                    /**
-                     * SLIDECUT after QUESTIONBOTTOM inspection
-                     */
-                    if (nextElementStr.indexOf('[SLIDECUT]') === -1) {
-                        addError(
-                            'Tag',
-                            '[SLIDECUT] must exist after [QUESTIONBOTTOM].',
-                            'hard',
-                            curTitle,
-                        );
-                        break;
-                    }
-                    /**
-                     * question content inspection
-                     */
-                    if (curQuestionCount < 4) {
-                        const { table } = elementArr[i - 1];
-                        if (!table || (table && table.tableRows[0].tableCells.length < 4)) {
+        try {
+            let curBlock = '';
+            let curType = 2;
+            let curTitle = '';
+            let curBlockStrLength = 0;
+            let curSlideStrLength = 0;
+            let curQuestionCount = 0;
+            sectionBlocks = [];
+            let isFirstVideoHeader = 0;
+            let isBlockFinished = false;
+    
+            for (let i = 0; i < elementArr.length; i += 1) {
+                const element = elementArr[i];
+                const tempBlock = renderElements(element, i);
+                const elementStr = element.paragraph ? JSON.stringify(element.paragraph.elements) : '';
+                const elementStyle =
+                    element.paragraph && element.paragraph.paragraphStyle.namedStyleType
+                        ? element.paragraph.paragraphStyle.namedStyleType
+                        : '';
+                const nextElementStr =
+                    elementArr[i + 1] && elementArr[i + 1].paragraph
+                        ? JSON.stringify(elementArr[i + 1].paragraph.elements)
+                        : '';
+                const nextElementStyle =
+                    elementArr[i + 1] &&
+                    elementArr[i + 1].paragraph &&
+                    elementArr[i + 1].paragraph.paragraphStyle.namedStyleType
+                        ? elementArr[i + 1].paragraph.paragraphStyle.namedStyleType
+                        : '';
+        
+                if (tempBlock) {
+                    const videoStarted = elementStr.indexOf('[VIDEOHEADER]') !== -1;
+                    const videoEnded = elementStr.indexOf('[VIDEOBOTTOM]') !== -1;
+                    const questionStarted = elementStr.indexOf('[QUESTIONHEADER]') !== -1;
+                    const questionEnded = elementStr.indexOf('[QUESTIONBOTTOM]') !== -1;
+                    const isSlideCut = elementStr.indexOf('[SLIDECUT]') !== -1;
+                    const curText = getTextFromElement(element);
+            
+                    if (videoStarted) {
+                        /**
+                         * H1 followed by VIDEOHEADER inspection
+                         */
+                        if (nextElementStyle.indexOf('HEADING_1') === -1) {
+                            addError('Heading', 'H1 required after VIDEOHEADER', 'hard', curTitle);
+                            break;
+                        }
+                
+                        // video section start
+                        curType = 0;
+                        isFirstVideoHeader += 1;
+                        isBlockFinished = false;
+                        curSlideStrLength = 0;
+                        curTitle = '';
+                    } else if (videoEnded) {
+                        /**
+                         * SLIDECUT after VIDEOBOTTOM inspection
+                         */
+                        if (nextElementStr.indexOf('[SLIDECUT]') === -1 && isFirstVideoHeader > 1) {
                             addError(
-                                'Question',
-                                'Questions must have at minimum: Question name, question text, a correct answer, and a wrong answer.',
+                                'Tag',
+                                '[SLIDECUT] must exist after [VIDEOBOTTOM].',
                                 'hard',
                                 curTitle,
                             );
                             break;
                         }
-                    }
-
-                    // question section end
-                    sectionBlocks = [
-                        ...sectionBlocks,
-                        { title: curTitle, content: curBlock, type: 'question' },
-                    ];
-                    curBlock = [];
-                    curBlockStrLength = 0;
-                    isBlockFinished = true;
-                } else if (isSlideCut) {
-                    // section end
-                    if (curType === 2) {
-                        // end of slide section
-                        isBlockFinished = true;
+                
+                        // video section end
                         sectionBlocks = [
                             ...sectionBlocks,
-                            { title: curTitle, content: curBlock, type: 'slide' },
+                            { title: curTitle, content: curBlock, type: 'video' },
                         ];
                         curBlock = [];
-                    } else if (curType === 0 && !isBlockFinished) {
-                        addError('Tag', '[VIDEOBOTTOM] is required', 'hard', curTitle);
-                        break;
-                    } else if (curType === 1 && !isBlockFinished) {
-                        addError('Tag', '[QUESTIONBOTTOM] is required', 'hard', curTitle);
-                        break;
-                    }
-
-                    if (
-                        nextElementStr &&
-                        nextElementStyle.indexOf('HEADING_1') === -1 &&
-                        nextElementStr.indexOf('QUESTIONHEADER') === -1 &&
-                        nextElementStr.indexOf('VIDEOHEADER') === -1
-                    ) {
-                        addError('Heading', 'H1 required after SLIDECUT', 'hard', curTitle);
-                        break;
-                    }
-                    curTitle = '';
-                    curType = 2;
-                } else {
-                    if (curTitle === '') {
-                        // Start of new section
-                        if (element.paragraph) {
-                            curTitle = curText.replace(/(\r\n|\n|\r)/gm, '');
-                            curSlideStrLength = 0;
-                        }
-                    }
-                    curBlockStrLength += curText.length;
-                    curBlock = [...curBlock, tempBlock];
-
-                    if (curType === 2) {
-                        if (curBlockStrLength >= 30000) {
+                        curBlockStrLength = 0;
+                        isBlockFinished = true;
+                    } else if (questionStarted) {
+                        // question section start
+                        curType = 1;
+                        curTitle = '';
+                        curSlideStrLength = 0;
+                        curQuestionCount = 0;
+                        isBlockFinished = false;
+                    } else if (questionEnded) {
+                        /**
+                         * question title validation
+                         */
+                        if (!curTitle) {
                             addError(
-                                'Section',
-                                'Slide section must not contain more than 30000 characters',
-                                'soft',
+                                'Tag',
+                                'Question name is empty',
+                                'hard',
+                                curTitle
+                            );
+                            break;
+                        }
+                        /**
+                         * SLIDECUT after QUESTIONBOTTOM inspection
+                         */
+                        if (nextElementStr.indexOf('[SLIDECUT]') === -1) {
+                            addError(
+                                'Tag',
+                                '[SLIDECUT] must exist after [QUESTIONBOTTOM].',
+                                'hard',
                                 curTitle,
                             );
-                        } else if (elementStyle.indexOf('HEADING') === -1) {
-                            curSlideStrLength += curText.length;
-                            if (curSlideStrLength > 3000) {
+                            break;
+                        }
+                        /**
+                         * question content inspection
+                         */
+                        const { table } = elementArr[i - 1];
+                        if (curQuestionCount < 4) {
+                            if (!table || (table && table.tableRows[0].tableCells.length < 4)) {
                                 addError(
-                                    'Slide',
-                                    'Length of text between two headings in slide section must not be greater than 3000',
+                                    'Question',
+                                    'Questions must have at minimum: Question name, question text, a correct answer, and a wrong answer.',
+                                    'hard',
+                                    curTitle,
+                                );
+                                break;
+                            }
+                        }
+                        if (table) {
+                            table.tableRows.forEach((row) => {
+                                row.tableCells.forEach((cell) => {
+                                    const cellText = getTextFromElement(cell.content[0]);
+                                    if (!cellText.replace(' ', '').replace('\n', '')) {
+                                        addError(
+                                            'Question',
+                                            'Question cells should not be empty.',
+                                            'hard',
+                                            curTitle,
+                                        );
+                                        throw Error('question error');
+                                    }
+                                });
+                            });
+                        }
+                
+                        // question section end
+                        sectionBlocks = [
+                            ...sectionBlocks,
+                            { title: curTitle, content: curBlock, type: 'question' },
+                        ];
+                        curBlock = [];
+                        curBlockStrLength = 0;
+                        isBlockFinished = true;
+                    } else if (isSlideCut) {
+                        // section end
+                        if (curType === 2) {
+                            // end of slide section
+                            isBlockFinished = true;
+                            sectionBlocks = [
+                                ...sectionBlocks,
+                                { title: curTitle, content: curBlock, type: 'slide' },
+                            ];
+                            curBlock = [];
+                        } else if (curType === 0 && !isBlockFinished) {
+                            addError('Tag', '[VIDEOBOTTOM] is required', 'hard', curTitle);
+                            break;
+                        } else if (curType === 1 && !isBlockFinished) {
+                            addError('Tag', '[QUESTIONBOTTOM] is required', 'hard', curTitle);
+                            break;
+                        }
+                
+                        if (
+                            nextElementStr &&
+                            nextElementStyle.indexOf('HEADING_1') === -1 &&
+                            nextElementStr.indexOf('QUESTIONHEADER') === -1 &&
+                            nextElementStr.indexOf('VIDEOHEADER') === -1
+                        ) {
+                            addError('Heading', 'H1 required after SLIDECUT', 'hard', curTitle);
+                            break;
+                        }
+                        curTitle = '';
+                        curType = 2;
+                    } else {
+                        if (curTitle === '') {
+                            // Start of new section
+                            if (element.paragraph) {
+                                curTitle = curText.replace(/(\r\n|\n|\r)/gm, '');
+                                curSlideStrLength = 0;
+                            }
+                        }
+                        curBlockStrLength += curText.length;
+                        curBlock = [...curBlock, tempBlock];
+                
+                        if (curType === 2) {
+                            if (curBlockStrLength >= 30000) {
+                                addError(
+                                    'Section',
+                                    'Slide section must not contain more than 30000 characters',
                                     'soft',
                                     curTitle,
                                 );
+                            } else if (elementStyle.indexOf('HEADING') === -1) {
+                                curSlideStrLength += curText.length;
+                                if (curSlideStrLength > 3000) {
+                                    addError(
+                                        'Slide',
+                                        'Length of text between two headings in slide section must not be greater than 3000',
+                                        'soft',
+                                        curTitle,
+                                    );
+                                }
                             }
                         }
                     }
-                }
-
-                if (elementStyle.indexOf('HEADING') !== -1) {
-                    curSlideStrLength = 0;
-                    if (curText.length > 150) {
-                        addError(
-                            'Heading',
-                            'Headings must not contain more than 150 characters',
-                            'soft',
-                            curTitle,
-                        );
-                    }
-                }
-                if (nextElementStyle.indexOf('HEADING') !== -1) {
-                    const nextHeadingType = nextElementStyle.substr('-1');
-                    const headingType = elementStyle.substr('-1') || 0;
-                    if (nextHeadingType === '1' && i > 1) {
-                        let nextTitle = getTextFromElement(elementArr[i+1]);
-                        nextTitle = nextTitle.replace(/(\r\n|\n|\r)/gm, '');
-                        if (!isSlideCut && !videoStarted) {
+            
+                    if (elementStyle.indexOf('HEADING') !== -1) {
+                        curSlideStrLength = 0;
+                        if (curText.length > 150) {
                             addError(
                                 'Heading',
-                                'H1 must be followed by VIDEOHEADER or SLIDECUT',
+                                'Headings must not contain more than 150 characters',
+                                'soft',
+                                curTitle,
+                            );
+                        }
+                    }
+                    if (nextElementStyle.indexOf('HEADING') !== -1) {
+                        const nextHeadingType = nextElementStyle.substr('-1');
+                        const headingType = elementStyle.substr('-1') || 0;
+                        if (nextHeadingType === '1' && i > 1) {
+                            let nextTitle = getTextFromElement(elementArr[i + 1]);
+                            nextTitle = nextTitle.replace(/(\r\n|\n|\r)/gm, '');
+                            if (!isSlideCut && !videoStarted) {
+                                addError(
+                                    'Heading',
+                                    'H1 must be followed by VIDEOHEADER or SLIDECUT',
+                                    'hard',
+                                    nextTitle,
+                                );
+                                break;
+                            }
+                        }
+                        if (elementStyle.indexOf('HEADING') !== -1 && headingType > nextHeadingType) {
+                            addError(
+                                'Heading',
+                                `Headings must cascade: ${nextElementStyle} after ${elementStyle}.`,
                                 'hard',
-                                nextTitle,
+                                curTitle,
                             );
                             break;
                         }
                     }
-                    if (elementStyle.indexOf('HEADING') !== -1 && headingType > nextHeadingType) {
-                        addError(
-                            'Heading',
-                            `Headings must cascade: ${nextElementStyle} after ${elementStyle}.`,
-                            'hard',
-                            curTitle,
-                        );
-                        break;
-                    }
                 }
             }
+        } catch (err) {
+            console.log(err.message);
         }
     };
 
