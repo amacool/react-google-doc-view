@@ -140,7 +140,7 @@ const DocView = ({ docContent }) => {
             <div className="page-container">
                 <div className="error-warning-container">
                     {errors.map((error, index) => (
-                        <div key={`error-${index}`}>
+                        <div key={`error-${index}`} className="error-warning-item">
                             <div>type: {error.type}</div>
                             <div>action: {error.action}</div>
                             <div>context: {error.context}</div>

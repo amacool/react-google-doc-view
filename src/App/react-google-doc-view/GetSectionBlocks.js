@@ -616,16 +616,25 @@ export const getSectionBlocks = data => {
                         }
                         if (table) {
                             table.tableRows.forEach((row) => {
-                                row.tableCells.forEach((cell) => {
+                                row.tableCells.forEach((cell, index) => {
                                     const cellText = getTextFromElement(cell.content[0]);
                                     if (!cellText.replace(' ', '').replace('\n', '')) {
-                                        addError(
-                                            'Question',
-                                            'Question cells should not be empty.',
-                                            'hard',
-                                            curTitle,
-                                        );
-                                        throw Error('question error');
+                                        if (index < 3) {
+                                            addError(
+                                                'Question',
+                                                'Question cells(1, 2, 3) should not be empty.',
+                                                'hard',
+                                                curTitle,
+                                            );
+                                            throw Error('question error');
+                                        } else {
+                                            addError(
+                                                'Question',
+                                                'Question cell is empty.',
+                                                'soft',
+                                                curTitle,
+                                            );
+                                        }
                                     }
                                 });
                             });
@@ -756,7 +765,7 @@ export const getSectionBlocks = data => {
     namedStyles = getNamedStyle(namedStyles);
     getSections();
 
-    if (errors.length < 1) {
+    if (errors.filter(error => error.type === 'hard').length < 1) {
         // get section list structure
         getSectionList();
     }
