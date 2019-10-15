@@ -9,6 +9,7 @@ import {
     getNodeId,
     getParents,
     getReadProgress,
+    getNonEmptyNodeId,
     renderNode,
 } from './viewer';
 import './index.css';
@@ -21,21 +22,12 @@ const DocView = ({ docContent }) => {
     const [progress, setProgress] = useState(0);
     const [docSlideList, setDocSlideList] = useState([]);
     const [menuList, setMenuList ] = useState([]);
-    
+
     const navigateToPrev = () => {
         if (docSlideList.length < 1) {
             return;
         }
-        let nodeId = 0;
-        for (let i = curNodeId - 1;; i -= 1) {
-            if (i < 0) {
-                i = docSlideList.length - 1;
-            }
-            if (docSlideList[i].content) {
-                nodeId = i;
-                break;
-            }
-        }
+        const nodeId = getNonEmptyNodeId(curNodeId - 1, -1, docSlideList);
         closeNodes(getParents(docSlideList, curNode));
         getParents(docSlideList, docSlideList[nodeId]).forEach(item => (item.isOpen = true));
         setCurNodeId(nodeId);
@@ -46,16 +38,7 @@ const DocView = ({ docContent }) => {
         if (docSlideList.length < 1) {
             return;
         }
-        let nodeId = 0;
-        for (let i = curNodeId + 1;; i += 1) {
-            if (i >= docSlideList.length) {
-                i = 0;
-            }
-            if (docSlideList[i].content) {
-                nodeId = i;
-                break;
-            }
-        }
+        const nodeId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);
         closeNodes(getParents(docSlideList, curNode));
         getParents(docSlideList, docSlideList[nodeId]).forEach(item => (item.isOpen = true));
         setCurNodeId(nodeId);
@@ -119,19 +102,21 @@ const DocView = ({ docContent }) => {
             </React.Fragment>
         );
     };
-    
+
     // Set current progress
     useEffect(() => {
         setProgress(getReadProgress(curNodeId, docSlideList.length));
-    }, [setProgress, getReadProgress, curNodeId, docSlideList]);
-    
+    }, [setProgress, curNodeId, docSlideList]);
+
     // Generate slide list
     useEffect(() => {
         const { slideList, updatedMenuList } = getDocSlideList(
             docSectionStructure.sections,
         );
+        const nodeId = getNonEmptyNodeId(0, +1, slideList);
+        setCurNodeId(nodeId);
+        setCurNode(slideList[nodeId]);
         setDocSlideList(slideList);
-        setCurNode(slideList[0]);
         setMenuList(updatedMenuList);
     }, []);
 

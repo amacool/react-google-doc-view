@@ -503,7 +503,7 @@ export const getSectionBlocks = data => {
             sectionBlocks = [];
             let isFirstVideoHeader = 0;
             let isBlockFinished = false;
-    
+
             for (let i = 0; i < elementArr.length; i += 1) {
                 const element = elementArr[i];
                 const tempBlock = renderElements(element, i);
@@ -522,7 +522,7 @@ export const getSectionBlocks = data => {
                     elementArr[i + 1].paragraph.paragraphStyle.namedStyleType
                         ? elementArr[i + 1].paragraph.paragraphStyle.namedStyleType
                         : '';
-        
+
                 if (tempBlock) {
                     const videoStarted = elementStr.indexOf('[VIDEOHEADER]') !== -1;
                     const videoEnded = elementStr.indexOf('[VIDEOBOTTOM]') !== -1;
@@ -530,7 +530,7 @@ export const getSectionBlocks = data => {
                     const questionEnded = elementStr.indexOf('[QUESTIONBOTTOM]') !== -1;
                     const isSlideCut = elementStr.indexOf('[SLIDECUT]') !== -1;
                     const curText = getTextFromElement(element);
-            
+
                     if (videoStarted) {
                         /**
                          * H1 followed by VIDEOHEADER inspection
@@ -539,7 +539,7 @@ export const getSectionBlocks = data => {
                             addError('Heading', 'H1 required after VIDEOHEADER', 'hard', curTitle);
                             break;
                         }
-                
+
                         // video section start
                         curType = 0;
                         isFirstVideoHeader += 1;
@@ -640,7 +640,7 @@ export const getSectionBlocks = data => {
                                 });
                             });
                         }
-                
+
                         // question section end
                         sectionBlocks = [
                             ...sectionBlocks,
@@ -666,7 +666,7 @@ export const getSectionBlocks = data => {
                             addError('Tag', '[QUESTIONBOTTOM] is required', 'hard', curTitle);
                             break;
                         }
-                
+
                         if (
                             nextElementStr &&
                             nextElementStyle.indexOf('HEADING_1') === -1 &&
@@ -725,7 +725,7 @@ export const getSectionBlocks = data => {
                         /**
                          * heading cascading inspection
                          */
-                        if (prevHeadingLevel > 0 && (headingType - prevHeadingLevel > 1) ) {
+                        if (prevHeadingLevel > 0 && (headingType - prevHeadingLevel > 1)) {
                             addError(
                                 'Heading',
                                 `Headings must cascade: Level ${headingType} after level ${prevHeadingLevel}.`,

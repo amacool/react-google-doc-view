@@ -17,6 +17,7 @@ import {
     getNodeId,
     getParents,
     getReadProgress,
+    getNonEmptyNodeId,
     renderNode,
 } from './viewer';
 
@@ -33,41 +34,23 @@ const ViewerContainer = props => {
     const [progress, setProgress] = useState(0);
     const [docSlideList, setDocSlideList] = useState([]);
     const [menuList, setMenuList] = useState([]);
-    
+
     const navigateToPrev = () => {
         if (docSlideList.length < 1) {
             return;
         }
-        let nodeId = 0;
-        for (let i = curNodeId - 1;; i -= 1) {
-            if (i < 0) {
-                i = docSlideList.length - 1;
-            }
-            if (docSlideList[i].content) {
-                nodeId = i;
-                break;
-            }
-        }
+        const nodeId = getNonEmptyNodeId(curNodeId - 1, -1, docSlideList);
         closeNodes(getParents(docSlideList, curNode));
         getParents(docSlideList, docSlideList[nodeId]).forEach(item => (item.isOpen = true));
         setCurNodeId(nodeId);
         setCurNode(docSlideList[nodeId]);
     };
-    
+
     const navigateToNext = () => {
         if (docSlideList.length < 1) {
             return;
         }
-        let nodeId = 0;
-        for (let i = curNodeId + 1;; i += 1) {
-            if (i >= docSlideList.length) {
-                i = 0;
-            }
-            if (docSlideList[i].content) {
-                nodeId = i;
-                break;
-            }
-        }
+        const nodeId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);
         closeNodes(getParents(docSlideList, curNode));
         getParents(docSlideList, docSlideList[nodeId]).forEach(item => (item.isOpen = true));
         setCurNodeId(nodeId);
@@ -142,8 +125,10 @@ const ViewerContainer = props => {
         const { slideList, menuList: updatedMenuList } = getDocSlideList(
             docSectionStructure.sections,
         );
+        const nodeId = getNonEmptyNodeId(0, +1, slideList);
+        setCurNodeId(nodeId);
+        setCurNode(slideList[nodeId]);
         setDocSlideList(slideList);
-        setCurNode(slideList[0]);
         setMenuList(updatedMenuList);
     }, [getDocSlideList, setDocSlideList, setCurNode, setMenuList]);
 

@@ -76,6 +76,19 @@ const getParents = (list, node) => {
     );
 };
 
+const getNonEmptyNodeId = (startPos, direction, list) => {
+    for (let i = startPos;; i = i + direction * 1) {
+        if (direction === -1 && i < 0) {
+            i = list.length - 1;
+        } else if (direction === 1 && i >= list.length) {
+            i = 0;
+        }
+        if (list[i].content) {
+            return i;
+        }
+    }
+};
+
 const renderTitle = (level, title, key) => {
     let nodeTitle = '';
     const fontSizes = ['32px', '24px', '20px', '18px', '16px', '14px'];
@@ -130,6 +143,7 @@ export {
     closeNodes,
     getNodeId,
     getParents,
+    getNonEmptyNodeId,
     renderTitle,
     renderNode,
 };
