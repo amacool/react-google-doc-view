@@ -498,6 +498,7 @@ export const getSectionBlocks = data => {
             let curBlockStrLength = 0;
             let curSlideStrLength = 0;
             let curQuestionCount = 0;
+            let prevHeadingLevel = 0;
             sectionBlocks = [];
             let isFirstVideoHeader = 0;
             let isBlockFinished = false;
@@ -662,7 +663,7 @@ export const getSectionBlocks = data => {
                             nextElementStr.indexOf('QUESTIONHEADER') === -1 &&
                             nextElementStr.indexOf('VIDEOHEADER') === -1
                         ) {
-                            addError('Heading', 'H1 required after SLIDECUT', 'hard', curTitle);
+                            addError('Heading', 'H1 is required after SLIDECUT', 'hard', curTitle);
                             break;
                         }
                         curTitle = '';
@@ -686,7 +687,7 @@ export const getSectionBlocks = data => {
                                     'soft',
                                     curTitle,
                                 );
-                            } else if (elementStyle.indexOf('HEADING') === -1) {
+                            } else if (elementStyle.indexOf('HEADING_') === -1) {
                                 curSlideStrLength += curText.length;
                                 if (curSlideStrLength > 3000) {
                                     addError(
@@ -700,7 +701,24 @@ export const getSectionBlocks = data => {
                         }
                     }
             
-                    if (elementStyle.indexOf('HEADING') !== -1) {
+                    if (elementStyle.indexOf('HEADING_') !== -1) {
+                        const headingType = elementStyle.substr('-1') || 0;
+                        /**
+                         * heading cascading inspection
+                         */
+                        if (prevHeadingLevel > 0 && (headingType - prevHeadingLevel > 1) ) {
+                            addError(
+                                'Heading',
+                                `Headings must cascade: Level ${headingType} after level ${prevHeadingLevel}.`,
+                                'hard',
+                                curText,
+                            );
+                            break;
+                        }
+                        prevHeadingLevel = headingType;
+                        /**
+                         * heading length inspection
+                         */
                         curSlideStrLength = 0;
                         if (curText.length > 150) {
                             addError(
@@ -711,9 +729,8 @@ export const getSectionBlocks = data => {
                             );
                         }
                     }
-                    if (nextElementStyle.indexOf('HEADING') !== -1) {
+                    if (nextElementStyle.indexOf('HEADING_') !== -1) {
                         const nextHeadingType = nextElementStyle.substr('-1');
-                        const headingType = elementStyle.substr('-1') || 0;
                         if (nextHeadingType === '1' && i > 1) {
                             let nextTitle = getTextFromElement(elementArr[i + 1]);
                             nextTitle = nextTitle.replace(/(\r\n|\n|\r)/gm, '');
@@ -726,15 +743,6 @@ export const getSectionBlocks = data => {
                                 );
                                 break;
                             }
-                        }
-                        if (elementStyle.indexOf('HEADING') !== -1 && headingType > nextHeadingType) {
-                            addError(
-                                'Heading',
-                                `Headings must cascade: ${nextElementStyle} after ${elementStyle}.`,
-                                'hard',
-                                curTitle,
-                            );
-                            break;
                         }
                     }
                 }

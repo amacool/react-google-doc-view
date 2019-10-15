@@ -113,10 +113,8 @@ const getHeadingNum = element => {
         element.paragraph && element.paragraph.paragraphStyle.namedStyleType
             ? element.paragraph.paragraphStyle.namedStyleType
             : '';
-    for (let k = 1; k < 7; k += 1) {
-        if (elementStyle.indexOf(`HEADING_${k}`) !== -1) {
-            return k;
-        }
+    if (elementStyle.indexOf('HEADING_') !== -1) {
+        return parseInt(elementStyle.substr(-1));
     }
     return -1;
 };
