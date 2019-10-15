@@ -35,6 +35,9 @@ const ViewerContainer = props => {
     const [menuList, setMenuList] = useState([]);
     
     const navigateToPrev = () => {
+        if (docSlideList.length < 1) {
+            return;
+        }
         let nodeId = 0;
         for (let i = curNodeId - 1;; i -= 1) {
             if (i < 0) {
@@ -52,6 +55,9 @@ const ViewerContainer = props => {
     };
     
     const navigateToNext = () => {
+        if (docSlideList.length < 1) {
+            return;
+        }
         let nodeId = 0;
         for (let i = curNodeId + 1;; i += 1) {
             if (i >= docSlideList.length) {
@@ -76,8 +82,8 @@ const ViewerContainer = props => {
                         curNode.nodeId === item.nodeId
                             ? 'active focus'
                             : curNode.nodeId.indexOf(item.nodeId) === 0
-                            ? 'active'
-                            : ''
+                                ? 'active'
+                                : ''
                     }`}
                     onClick={e => {
                         const prevNode = docSlideList.find(
@@ -97,8 +103,8 @@ const ViewerContainer = props => {
                                 break;
                             }
                         }
-                        let targetItem = docSlideList[targetNodeId];
-                        let parents = getParents(docSlideList, targetItem);
+                        const targetItem = docSlideList[targetNodeId];
+                        const parents = getParents(docSlideList, targetItem);
                         item.isOpen = !item.isOpen;
                         if (item.isOpen) {
                             closeNodes(getParents(docSlideList, curNode));

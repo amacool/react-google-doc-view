@@ -372,13 +372,18 @@ export const getSectionBlocks = data => {
         errors.push({ type, message, action, context, key: errors.length });
     };
 
-    const getSlideParams = endPos => {
-        const text =
-            elementArr[endPos] &&
-            elementArr[endPos].paragraph &&
-            elementArr[endPos].paragraph.elements[0] &&
-            elementArr[endPos].paragraph.elements[0].textRun &&
-            elementArr[endPos].paragraph.elements[0].textRun.content;
+    const getTextFromElement = element => {
+        return element &&
+            element.paragraph &&
+            element.paragraph.elements[0] &&
+            element.paragraph.elements[0].textRun &&
+            element.paragraph.elements[0].textRun.content
+            ? element.paragraph.elements[0].textRun.content
+            : '';
+    };
+    
+    const getSlideParams = element => {
+        const text = getTextFromElement(element);
         const videoStarted = text && text.indexOf('[VIDEOHEADER]') >= 0;
         const videoEnded = text && text.indexOf('[VIDEOBOTTOM]') >= 0;
         const questionStarted = text && text.indexOf('[QUESTIONHEADER]') >= 0;
@@ -411,7 +416,7 @@ export const getSectionBlocks = data => {
             headingNum < 1;
             curPos += 1
         ) {
-            const params = getSlideParams(curPos);
+            const params = getSlideParams(elementArr[curPos]);
             ({ videoEnded, questionEnded, slideCut } = params);
             headingNum = getHeadingNum(elementArr[curPos]);
             if (videoEnded || questionEnded || slideCut || headingNum > 0) {
@@ -427,7 +432,7 @@ export const getSectionBlocks = data => {
     const getSectionList = () => {
         for (let curPos = 0; curPos < elementArr.length; curPos += 1) {
             let headingNum = getHeadingNum(elementArr[curPos]);
-            const slideParams = getSlideParams(curPos);
+            const slideParams = getSlideParams(elementArr[curPos]);
             const { text } = slideParams;
             let {
                 videoStarted,
@@ -441,7 +446,7 @@ export const getSectionBlocks = data => {
                 const sectionTitle =
                     headingNum > 0
                         ? text
-                        : elementArr[curPos + 1].paragraph.elements[0].textRun.content;
+                        : getTextFromElement(elementArr[curPos + 1]);
                 const newSection = {
                     title: sectionTitle.replace(/(\r\n|\n|\r)/gm, ''),
                     type: videoStarted ? 'video' : questionStarted ? 'question' : 'slideshow',
@@ -449,7 +454,7 @@ export const getSectionBlocks = data => {
                 };
                 if (headingNum < 1) curPos += 1;
                 for (; !videoEnded && !questionEnded && !slideCut && curPos < elementArr.length; ) {
-                    const params = getSlideParams(curPos);
+                    const params = getSlideParams(elementArr[curPos]);
                     ({
                         questionStarted,
                         videoStarted,
@@ -472,7 +477,7 @@ export const getSectionBlocks = data => {
                         title:
                             headingNum && params.text
                                 ? params.text
-                                : elementArr[curPos + 1].paragraph.elements[0].textRun.content,
+                                : getTextFromElement(elementArr[curPos + 1]),
                         content,
                         word_count: wordCount,
                         level: headingNum > 0 ? headingNum : 1,
@@ -520,13 +525,8 @@ export const getSectionBlocks = data => {
                 const videoEnded = elementStr.indexOf('[VIDEOBOTTOM]') !== -1;
                 const questionStarted = elementStr.indexOf('[QUESTIONHEADER]') !== -1;
                 const questionEnded = elementStr.indexOf('[QUESTIONBOTTOM]') !== -1;
-                const slideCut = elementStr.indexOf('[SLIDECUT]') !== -1;
-                const curText =
-                    element.paragraph &&
-                    element.paragraph.elements[0].textRun &&
-                    element.paragraph.elements[0].textRun.content
-                        ? element.paragraph.elements[0].textRun.content
-                        : '';
+                const isSlideCut = elementStr.indexOf('[SLIDECUT]') !== -1;
+                const curText = getTextFromElement(element);
 
                 if (videoStarted) {
                     /**
@@ -574,6 +574,18 @@ export const getSectionBlocks = data => {
                     isBlockFinished = false;
                 } else if (questionEnded) {
                     /**
+                     * question title validation
+                     */
+                    if (!curTitle) {
+                        addError(
+                            'Tag',
+                            'Question name is empty',
+                            'hard',
+                            curTitle
+                        );
+                        break;
+                    }
+                    /**
                      * SLIDECUT after QUESTIONBOTTOM inspection
                      */
                     if (nextElementStr.indexOf('[SLIDECUT]') === -1) {
@@ -609,7 +621,7 @@ export const getSectionBlocks = data => {
                     curBlock = [];
                     curBlockStrLength = 0;
                     isBlockFinished = true;
-                } else if (slideCut) {
+                } else if (isSlideCut) {
                     // section end
                     if (curType === 2) {
                         // end of slide section
@@ -685,13 +697,15 @@ export const getSectionBlocks = data => {
                 if (nextElementStyle.indexOf('HEADING') !== -1) {
                     const nextHeadingType = nextElementStyle.substr('-1');
                     const headingType = elementStyle.substr('-1') || 0;
-                    if (nextHeadingType === 1) {
-                        if (!slideCut && !videoStarted) {
+                    if (nextHeadingType === '1' && i > 1) {
+                        let nextTitle = getTextFromElement(elementArr[i+1]);
+                        nextTitle = nextTitle.replace(/(\r\n|\n|\r)/gm, '');
+                        if (!isSlideCut && !videoStarted) {
                             addError(
                                 'Heading',
                                 'H1 must be followed by VIDEOHEADER or SLIDECUT',
                                 'hard',
-                                curTitle,
+                                nextTitle,
                             );
                             break;
                         }
@@ -714,8 +728,10 @@ export const getSectionBlocks = data => {
     namedStyles = getNamedStyle(namedStyles);
     getSections();
 
-    // get section list structure
-    getSectionList();
+    if (errors.length < 1) {
+        // get section list structure
+        getSectionList();
+    }
 
     return {
         docSections: sectionBlocks,

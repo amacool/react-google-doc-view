@@ -14,7 +14,7 @@ import {
 import './index.css';
 
 const DocView = ({ docContent }) => {
-    const { docSectionStructure } = docContent;
+    const { docSectionStructure, errors } = docContent;
     const [curNodeId, setCurNodeId] = useState(0);
     const [curNode, setCurNode] = useState({});
     const [showNavigationList, setShowNavigationList] = useState(false);
@@ -23,6 +23,9 @@ const DocView = ({ docContent }) => {
     const [menuList, setMenuList ] = useState([]);
     
     const navigateToPrev = () => {
+        if (docSlideList.length < 1) {
+            return;
+        }
         let nodeId = 0;
         for (let i = curNodeId - 1;; i -= 1) {
             if (i < 0) {
@@ -40,6 +43,9 @@ const DocView = ({ docContent }) => {
     };
 
     const navigateToNext = () => {
+        if (docSlideList.length < 1) {
+            return;
+        }
         let nodeId = 0;
         for (let i = curNodeId + 1;; i += 1) {
             if (i >= docSlideList.length) {
@@ -124,7 +130,6 @@ const DocView = ({ docContent }) => {
         const { slideList, updatedMenuList } = getDocSlideList(
             docSectionStructure.sections,
         );
-        console.log(slideList, updatedMenuList);
         setDocSlideList(slideList);
         setCurNode(slideList[0]);
         setMenuList(updatedMenuList);
@@ -133,6 +138,16 @@ const DocView = ({ docContent }) => {
     return (
         <div className="doc-view-container">
             <div className="page-container">
+                <div className="error-warning-container">
+                    {errors.map((error, index) => (
+                        <div key={`error-${index}`}>
+                            <div>type: {error.type}</div>
+                            <div>action: {error.action}</div>
+                            <div>context: {error.context}</div>
+                            <div>message: {error.message}</div>
+                        </div>
+                    ))}
+                </div>
                 <div className="doc-view-frame-container">
                     <div className="doc-view-frame-header">
                         <div className="doc-view-progress">
