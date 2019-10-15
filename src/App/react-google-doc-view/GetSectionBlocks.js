@@ -619,7 +619,7 @@ export const getSectionBlocks = data => {
                             table.tableRows.forEach((row) => {
                                 row.tableCells.forEach((cell, index) => {
                                     const cellText = getTextFromElement(cell.content[0]);
-                                    if (!cellText.replace(' ', '').replace('\n', '')) {
+                                    if (!cellText.replace(/\s/gi, '').replace(/\n/gi, '')) {
                                         if (index < 3) {
                                             addError(
                                                 'Question',

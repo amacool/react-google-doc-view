@@ -77,13 +77,18 @@ const getParents = (list, node) => {
 };
 
 const getNonEmptyNodeId = (startPos, direction, list) => {
+    let count = 0;
     for (let i = startPos;; i = i + direction * 1) {
+        count += 1;
+        if (count > list.length) {
+            return -1;
+        }
         if (direction === -1 && i < 0) {
             i = list.length - 1;
         } else if (direction === 1 && i >= list.length) {
             i = 0;
         }
-        if (list[i].content) {
+        if (list[i] && list[i].content) {
             return i;
         }
     }

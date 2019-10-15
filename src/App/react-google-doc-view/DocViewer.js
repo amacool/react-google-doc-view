@@ -36,7 +36,7 @@ const ViewerContainer = props => {
     const [menuList, setMenuList] = useState([]);
 
     const navigateToPrev = () => {
-        if (docSlideList.length < 1) {
+        if (docSlideList.length < 1 || curNodeId === -1) {
             return;
         }
         const nodeId = getNonEmptyNodeId(curNodeId - 1, -1, docSlideList);
@@ -47,7 +47,7 @@ const ViewerContainer = props => {
     };
 
     const navigateToNext = () => {
-        if (docSlideList.length < 1) {
+        if (docSlideList.length < 1 || curNodeId === -1) {
             return;
         }
         const nodeId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);

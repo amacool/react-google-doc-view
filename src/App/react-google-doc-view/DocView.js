@@ -24,7 +24,7 @@ const DocView = ({ docContent }) => {
     const [menuList, setMenuList ] = useState([]);
 
     const navigateToPrev = () => {
-        if (docSlideList.length < 1) {
+        if (docSlideList.length < 1 || curNodeId === -1) {
             return;
         }
         const nodeId = getNonEmptyNodeId(curNodeId - 1, -1, docSlideList);
@@ -35,7 +35,7 @@ const DocView = ({ docContent }) => {
     };
 
     const navigateToNext = () => {
-        if (docSlideList.length < 1) {
+        if (docSlideList.length < 1 || curNodeId === -1) {
             return;
         }
         const nodeId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);
@@ -160,7 +160,10 @@ const DocView = ({ docContent }) => {
                         </div>
                     </div>
                     <div className="doc-view-frame">
-                        {docSlideList.length && renderNode(docSlideList, docSlideList[curNodeId], curNodeId)}
+                        {docSlideList.length && curNodeId >= 0
+                            ? renderNode(docSlideList, docSlideList[curNodeId], curNodeId)
+                            : null
+                        }
                     </div>
                     <div className="doc-view-frame-controller">
                         <div onClick={() => navigateToPrev()}>Previous</div>
