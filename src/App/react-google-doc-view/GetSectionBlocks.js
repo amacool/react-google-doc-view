@@ -381,7 +381,7 @@ export const getSectionBlocks = data => {
             ? element.paragraph.elements[0].textRun.content
             : '';
     };
-    
+
     const getSlideParams = element => {
         const text = getTextFromElement(element);
         const videoStarted = text && text.indexOf('[VIDEOHEADER]') >= 0;
@@ -499,6 +499,7 @@ export const getSectionBlocks = data => {
             let curSlideStrLength = 0;
             let curQuestionCount = 0;
             let prevHeadingLevel = 0;
+            let prevHeading = '';       // previous heading (can be any level)
             sectionBlocks = [];
             let isFirstVideoHeader = 0;
             let isBlockFinished = false;
@@ -624,7 +625,7 @@ export const getSectionBlocks = data => {
                                                 'Question',
                                                 'Question cells(1, 2, 3) should not be empty.',
                                                 'hard',
-                                                curTitle,
+                                                prevHeading,
                                             );
                                             throw Error('question error');
                                         } else {
@@ -632,7 +633,7 @@ export const getSectionBlocks = data => {
                                                 'Question',
                                                 'Question cell is empty.',
                                                 'soft',
-                                                curTitle,
+                                                prevHeading,
                                             );
                                         }
                                     }
@@ -682,6 +683,8 @@ export const getSectionBlocks = data => {
                             // Start of new section
                             if (element.paragraph) {
                                 curTitle = curText.replace(/(\r\n|\n|\r)/gm, '');
+                                prevHeadingLevel = 1;
+                                prevHeading = curTitle;
                                 curSlideStrLength = 0;
                             }
                         }
@@ -703,7 +706,7 @@ export const getSectionBlocks = data => {
                                         'Slide',
                                         'Length of text between two headings in slide section must not be greater than 3000',
                                         'soft',
-                                        curTitle,
+                                        prevHeading,
                                     );
                                 }
                             }
@@ -725,6 +728,7 @@ export const getSectionBlocks = data => {
                             break;
                         }
                         prevHeadingLevel = headingType;
+                        prevHeading = curText;
                         /**
                          * heading length inspection
                          */
@@ -734,7 +738,7 @@ export const getSectionBlocks = data => {
                                 'Heading',
                                 'Headings must not contain more than 150 characters',
                                 'soft',
-                                curTitle,
+                                prevHeading,
                             );
                         }
                     }
