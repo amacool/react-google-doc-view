@@ -495,7 +495,7 @@ export const getSectionBlocks = data => {
             let curBlock = '';
             let curType = 2;
             let curTitle = '';
-            let curBlockStrLength = 0;
+            let curSectionStrLength = 0;
             let curSlideStrLength = 0;
             let curQuestionCount = 0;
             let prevHeadingLevel = 0;
@@ -566,7 +566,7 @@ export const getSectionBlocks = data => {
                             { title: curTitle, content: curBlock, type: 'video' },
                         ];
                         curBlock = [];
-                        curBlockStrLength = 0;
+                        curSectionStrLength = 0;
                         isBlockFinished = true;
                     } else if (questionStarted) {
                         // question section start
@@ -647,7 +647,7 @@ export const getSectionBlocks = data => {
                             { title: curTitle, content: curBlock, type: 'question' },
                         ];
                         curBlock = [];
-                        curBlockStrLength = 0;
+                        curSectionStrLength = 0;
                         isBlockFinished = true;
                     } else if (isSlideCut) {
                         // section end
@@ -688,11 +688,14 @@ export const getSectionBlocks = data => {
                                 curSlideStrLength = 0;
                             }
                         }
-                        curBlockStrLength += curText.length;
+                        if (curSectionStrLength >= 0) {
+                            curSectionStrLength += curText.length;
+                        }
                         curBlock = [...curBlock, tempBlock];
                 
                         if (curType === 2) {
-                            if (curBlockStrLength >= 30000) {
+                            if (curSectionStrLength >= 30000) {
+                                curSectionStrLength = -1;
                                 addError(
                                     'Section',
                                     'Slide section must not contain more than 30000 characters',
@@ -700,8 +703,11 @@ export const getSectionBlocks = data => {
                                     curTitle,
                                 );
                             } else if (elementStyle.indexOf('HEADING_') === -1) {
-                                curSlideStrLength += curText.length;
+                                if (curSlideStrLength >= 0) {
+                                    curSlideStrLength += curText.length;
+                                }
                                 if (curSlideStrLength > 3000) {
+                                    curSlideStrLength = -1;
                                     addError(
                                         'Slide',
                                         'Length of text between two headings in slide section must not be greater than 3000',
@@ -712,9 +718,10 @@ export const getSectionBlocks = data => {
                             }
                         }
                     }
-            
+
                     if (elementStyle.indexOf('HEADING_') !== -1) {
                         const headingType = elementStyle.substr('-1') || 0;
+                        curSlideStrLength = 0;
                         /**
                          * heading cascading inspection
                          */
@@ -732,7 +739,6 @@ export const getSectionBlocks = data => {
                         /**
                          * heading length inspection
                          */
-                        curSlideStrLength = 0;
                         if (curText.length > 150) {
                             addError(
                                 'Heading',
