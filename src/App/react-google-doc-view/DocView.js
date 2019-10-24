@@ -21,7 +21,7 @@ const DocView = ({ docContent }) => {
     const [showNavigationList, setShowNavigationList] = useState(false);
     const [progress, setProgress] = useState(0);
     const [docSlideList, setDocSlideList] = useState([]);
-    const [menuList, setMenuList ] = useState([]);
+    const [menuList, setMenuList] = useState([]);
 
     const navigateToPrev = () => {
         if (docSlideList.length < 1 || curNodeId === -1) {
@@ -39,6 +39,10 @@ const DocView = ({ docContent }) => {
             return;
         }
         const nodeId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);
+        if (nodeId < curNodeId) {
+            // finish app on the last slide
+            return;
+        }
         closeNodes(getParents(docSlideList, curNode));
         getParents(docSlideList, docSlideList[nodeId]).forEach(item => (item.isOpen = true));
         setCurNodeId(nodeId);
@@ -165,10 +169,12 @@ const DocView = ({ docContent }) => {
                             : null
                         }
                     </div>
-                    <div className="doc-view-frame-controller">
-                        <div onClick={() => navigateToPrev()}>Previous</div>
-                        <div onClick={() => navigateToNext()}>Next</div>
-                    </div>
+                    {docSlideList.length && curNodeId >= 0 ? (
+                        <div className="doc-view-frame-controller">
+                            <div onClick={() => navigateToPrev()}>Previous</div>
+                            <div onClick={() => navigateToNext()}>{getNonEmptyNodeId(curNodeId + 1, +1, docSlideList) < curNodeId ? 'Finish' : 'Next'}</div>
+                        </div>
+                    ) : null}
                 </div>
             </div>
             {showNavigationList && (
@@ -179,4 +185,5 @@ const DocView = ({ docContent }) => {
         </div>
     );
 };
+
 export default DocView;
