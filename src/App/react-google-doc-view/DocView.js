@@ -14,7 +14,7 @@ import {
 } from './viewer';
 import './index.css';
 
-const DocView = ({ docContent }) => {
+const DocView = ({ docContent, finishReading }) => {
     const { docSectionStructure, errors } = docContent;
     const [curNodeId, setCurNodeId] = useState(0);
     const [curNode, setCurNode] = useState({});
@@ -22,6 +22,16 @@ const DocView = ({ docContent }) => {
     const [progress, setProgress] = useState(0);
     const [docSlideList, setDocSlideList] = useState([]);
     const [menuList, setMenuList] = useState([]);
+    
+    useEffect(() => {
+        if (docSlideList.length === 0) {
+            return;
+        }
+        const nextId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);
+        if (nextId < curNodeId) {
+            finishReading();
+        }
+    }, [curNodeId]);
 
     const navigateToPrev = () => {
         if (docSlideList.length < 1 || curNodeId === -1) {
@@ -39,10 +49,6 @@ const DocView = ({ docContent }) => {
             return;
         }
         const nodeId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);
-        if (nodeId < curNodeId) {
-            // finish app on the last slide
-            return;
-        }
         closeNodes(getParents(docSlideList, curNode));
         getParents(docSlideList, docSlideList[nodeId]).forEach(item => (item.isOpen = true));
         setCurNodeId(nodeId);

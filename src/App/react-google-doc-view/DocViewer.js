@@ -34,6 +34,16 @@ const ViewerContainer = props => {
     const [progress, setProgress] = useState(0);
     const [docSlideList, setDocSlideList] = useState([]);
     const [menuList, setMenuList] = useState([]);
+    
+    useEffect(() => {
+        if (docSlideList.length === 0) {
+            return;
+        }
+        const nextId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);
+        if (nextId < curNodeId) {
+            props.finishReading();
+        }
+    }, [curNodeId]);
 
     const navigateToPrev = () => {
         if (docSlideList.length < 1 || curNodeId === -1) {
@@ -169,6 +179,7 @@ const mapDispatchToProps = dispatch =>
 ViewerContainer.propTypes = {
     doStartLoading: PropTypes.func,
     doStopLoading: PropTypes.func,
+    finishReading: PropTypes.func,
     fetching: PropTypes.bool,
     content: PropTypes.object,
 };

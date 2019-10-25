@@ -85,6 +85,7 @@ const ReactGoogleDocView = ({ documentId }) => {
             {docContent ?
                 <DocView
                     docContent={docContent}
+                    finishReading={() => alert('finished reading')}
                 /> : <div>loading...</div>}
         </React.Fragment>
     );
