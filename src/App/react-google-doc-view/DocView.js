@@ -47,6 +47,9 @@ const DocView = ({ docContent, finishReading }) => {
     const navigateToNext = () => {
         if (docSlideList.length < 1 || curNodeId === -1) {
             return;
+        } else if (docSlideList.length === 1) {
+            finishReading();
+            return;
         }
         const nodeId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);
         closeNodes(getParents(docSlideList, curNode));
@@ -123,6 +126,9 @@ const DocView = ({ docContent, finishReading }) => {
         const { slideList, updatedMenuList } = getDocSlideList(
             docSectionStructure.sections,
         );
+        if (slideList.length === 1) {
+            finishReading();
+        }
         const nodeId = getNonEmptyNodeId(0, +1, slideList);
         setCurNodeId(nodeId);
         setCurNode(slideList[nodeId]);
@@ -178,7 +184,10 @@ const DocView = ({ docContent, finishReading }) => {
                     {docSlideList.length && curNodeId >= 0 ? (
                         <div className="doc-view-frame-controller">
                             <div onClick={() => navigateToPrev()}>Previous</div>
-                            <div onClick={() => navigateToNext()}>{getNonEmptyNodeId(curNodeId + 1, +1, docSlideList) < curNodeId ? 'Finish' : 'Next'}</div>
+                            <div onClick={() => navigateToNext()}>
+                                {getNonEmptyNodeId(curNodeId + 1, +1, docSlideList) < curNodeId
+                                || docSlideList.length === 1 ? 'Finish' : 'Next'}
+                            </div>
                         </div>
                     ) : null}
                 </div>

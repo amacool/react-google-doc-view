@@ -59,6 +59,9 @@ const ViewerContainer = props => {
     const navigateToNext = () => {
         if (docSlideList.length < 1 || curNodeId === -1) {
             return;
+        } else if (docSlideList.length === 1) {
+            props.finishReading();
+            return;
         }
         const nodeId = getNonEmptyNodeId(curNodeId + 1, +1, docSlideList);
         if (nodeId < curNodeId) {
@@ -139,6 +142,9 @@ const ViewerContainer = props => {
         const { slideList, menuList: updatedMenuList } = getDocSlideList(
             docSectionStructure.sections,
         );
+        if (slideList.length === 1) {
+            props.finishReading();
+        }
         const nodeId = getNonEmptyNodeId(0, +1, slideList);
         setCurNodeId(nodeId);
         setCurNode(slideList[nodeId]);
